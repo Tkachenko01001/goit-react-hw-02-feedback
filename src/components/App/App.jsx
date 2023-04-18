@@ -10,8 +10,6 @@ class App extends Component {
       good: 0,
       neutral: 0,
       bad: 0,
-      total: 0,
-      positiveFeedback: 0,
     }
     
     handleLeaveFeedback = (option) => {
@@ -22,25 +20,19 @@ class App extends Component {
         }, this.countTotalFeedback);
       };
 
-    countTotalFeedback = () => {
-        this.setState((prevState) => {
-          return {
-            total: prevState.good + prevState.neutral + prevState.bad
-          }
-        }, this.countPositiveFeedbackPercentage)
-    }
-
-    countPositiveFeedbackPercentage = () => {
-        this.setState((prevState) => {
-          return {
-            positiveFeedback: Math.round((prevState.good / prevState.total) * 100)
-            }
-        })
-    }
+      countTotalFeedback = () => {
+        return this.state.good + this.state.neutral + this.state.bad;
+      }
+      
+      countPositiveFeedbackPercentage = () => {
+        const totalFeedback = this.countTotalFeedback();
+        const { good } = this.state;
+        return Math.round((good / totalFeedback) * 100);
+      }
   
     render() {
-
-      const {good, neutral, bad, total, positiveFeedback} = this.state;
+      
+      const {good, neutral, bad} = this.state;
       const options = ["good", "neutral", "bad"];
 
       return <>
@@ -57,8 +49,8 @@ class App extends Component {
            good={good}
            neutral={neutral}
            bad={bad}
-           total={total}
-           positiveFeedback={positiveFeedback}
+           total={this.countTotalFeedback()}
+           positiveFeedback={this.countPositiveFeedbackPercentage()}
         >
             <Notification message="There is no feedback" state={this.state}/>
         </Statistics>

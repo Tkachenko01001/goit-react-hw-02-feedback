@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Statistics = ({good, neutral, bad, total, positiveFeedback, children}) => {
   
   const stateArr = Object.values(children.props.state);
@@ -29,6 +31,15 @@ const Statistics = ({good, neutral, bad, total, positiveFeedback, children}) => 
         </ul> }
         </>
     )
+};
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positiveFeedback: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Statistics;

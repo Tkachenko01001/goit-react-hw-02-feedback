@@ -5,7 +5,7 @@ const Section = ({title, children}) => {
     return (
         <SectionFeedback>
             {title && <h1>{title}</h1>}
-              {children}
+            {children}
         </SectionFeedback>
     )
 }

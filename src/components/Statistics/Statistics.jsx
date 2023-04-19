@@ -1,14 +1,11 @@
 import PropTypes from "prop-types";
 
-const Statistics = ({good, neutral, bad, total, positiveFeedback, children}) => {
-  
-  const stateArr = Object.values(children.props.state);
-  const fedbackValue = stateArr.every(value => value === 0) 
+const Statistics = ({good, neutral, bad, total, positiveFeedback, title}) => {
   
     return (
          <>
-        <h2>Statistics</h2>
-        {fedbackValue ? children : <ul>
+        <h2>{title}</h2>
+        <ul>
           <li>
             good: {good}
           </li>
@@ -28,7 +25,7 @@ const Statistics = ({good, neutral, bad, total, positiveFeedback, children}) => 
           <li>
             Positive Feedback: {positiveFeedback}%
           </li>
-        </ul> }
+        </ul> 
         </>
     )
 };
@@ -39,7 +36,6 @@ Statistics.propTypes = {
   bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   positiveFeedback: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired,
 }
 
 export default Statistics;
